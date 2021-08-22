@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+        ubuntu:
+                image: ubuntu:latest
+                container_name: ubuntu_test
+                command: touch /test/change_me.txt
+                volumes:
+                        - ${PWD}/:/test 
+        ubuntu_2:
+                image: ubuntu:latest
+                container_name: ubuntu_test_2
+                command: chmod 777 /test/change_me.txt
+                volumes:
+                        - ${PWD}/:/test
+                depends_on:
+                        - ubuntu         
